@@ -1,0 +1,121 @@
+<!doctype html><html lang="pt-br"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roteiros do Dia · Rony Gabriel</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#eef1f5;--card:#fff;--ink:#1f2733;--mut:#6b7684;--line:#dde3ea;--blue:#123a6b;--blueh:#1e5aa8;
+--pend:#8a94a0;--prop:#c98a1a;--aprov:#1a7f4b;--risco:#c0392b;--hl:#fff7db}
+body{font:13.5px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.gnav{background:#0d2947;color:#fff;display:flex;align-items:center;gap:4px;padding:0 14px;flex-wrap:wrap}
+.gnav .brand{font-weight:800;font-size:13px;padding:9px 12px 9px 0;letter-spacing:.3px}
+.gnav a{color:#cdd8e6;text-decoration:none;font-size:12.5px;padding:11px 13px;border-bottom:2px solid transparent}
+.gnav a:hover{color:#fff}
+.gnav a.on{color:#fff;border-bottom-color:#4a90d9;font-weight:600}
+.top{background:var(--blue);color:#fff;padding:12px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.top h1{font-size:17px;font-weight:700}.top .d{opacity:.8;font-size:12px}
+.top .counts{margin-left:auto;display:flex;gap:8px;font-size:11.5px}
+.chip{padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.15)}
+.bar{background:#fff;border-bottom:1px solid var(--line);padding:9px 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:5}
+.bar .fil{font-size:12px;padding:5px 12px;border:1px solid var(--line);border-radius:20px;cursor:pointer;background:#fff}
+.bar .fil.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.wrap{max-width:920px;margin:0 auto;padding:16px 14px;display:flex;flex-direction:column;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(20,30,50,.05)}
+.card.risco{border-color:#eab8b0;box-shadow:0 0 0 1px #eab8b0}
+.ch{padding:12px 15px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.ch .id{font-weight:700;color:var(--blueh);font-size:12px;background:#eaf1fb;padding:2px 8px;border-radius:6px}
+.ch .tt{font-weight:700;font-size:14.5px;flex:1;min-width:200px}
+.badge{font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.3px}
+.b-pend{background:#eef1f4;color:var(--pend)}.b-prop{background:#fbf1dc;color:var(--prop)}.b-aprov{background:#e3f5ec;color:var(--aprov)}
+.b-risco{background:#fbe6e2;color:var(--risco)}
+.vf{font-size:11px;color:var(--mut)}.vf b{color:#c0392b}
+.cb{padding:13px 15px;display:flex;flex-direction:column;gap:12px}
+.sec{border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.sec>.h{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut);padding:7px 11px;background:#f6f8fb;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+.sec>.h .cp{margin-left:auto;cursor:pointer;color:var(--blueh);font-weight:600;font-size:10.5px}
+.sec .in{padding:11px}
+.gancho{background:var(--hl);border:1px solid #f0e2ad;border-radius:9px;padding:11px 13px;font-size:15px;font-weight:600;font-style:italic}
+.blk{display:flex;gap:10px;padding:5px 0;border-bottom:1px solid #f0f3f6}
+.blk:last-child{border-bottom:0}
+.blk .lb{flex:0 0 118px;font-size:10px;font-weight:700;color:var(--blueh);text-transform:uppercase;letter-spacing:.3px;padding-top:2px}
+.blk .tx{flex:1}
+.fato{font-size:12.5px;color:#334}
+.fontes{display:flex;flex-direction:column;gap:3px;margin-top:7px}
+.fontes a{font-size:11.5px;color:var(--blueh);text-decoration:none}.fontes a:hover{text-decoration:underline}
+.meta{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--mut)}
+.meta .est{font-weight:600;color:#345;background:#eef2f7;padding:1px 8px;border-radius:5px}
+.empty{padding:12px;color:var(--mut);font-size:12.5px;background:#fafbfc;border-radius:8px;text-align:center}
+.note{max-width:920px;margin:0 auto;padding:4px 14px 20px;color:var(--mut);font-size:11px;text-align:center}
+</style></head><body>
+<div class="gnav">
+  <span class="brand">🎯 Operação Rony</span>
+  <a href="index.html">Início</a>
+  <a href="roteiros-do-dia.html" class="on">Roteiros do Dia</a>
+  <a href="mapa-rs.html">Mapa Eleitoral</a>
+  <a href="central.html">Central de Inteligência</a>
+</div>
+<div class="top"><h1>Roteiros do Dia</h1><span class="d">Rony Gabriel · 2026-08-02</span>
+<div class="counts" id="counts"></div></div>
+<div class="bar">
+  <span style="font-size:11.5px;color:var(--mut)">Filtrar:</span>
+  <span class="fil on" data-f="all">Todos</span>
+  <span class="fil" data-f="proposto">Proposto</span>
+  <span class="fil" data-f="aprovado">Aprovado</span>
+  <span class="fil" data-f="pendente">Pendente</span>
+  <span class="fil" data-f="risco">⚠️ Risco</span>
+</div>
+<div class="wrap" id="wrap"></div>
+<div class="note">Fonte do dia: 2026-08-02_brief.md · Fluxo: rotina 7h → skill roteiros-do-dia-rony → <b>aprovar</b> → gravar → esteira. Toda afirmação exige fonte (regra de segurança TSE).</div>
+<script>
+const D={"data":"2026-08-02","arquivo":"2026-08-02_brief.md","items":[{"id":"I01","title":"Filho do Lula vira alvo da PF no INSS","vf":10.0,"le":"LE-06","fmt":"FMT-LOFI","risco":false,"origem":"pauta top 1 · tema STF/sistema · 2026-08-02","fato":"O ministro **André Mendonça (STF)** autorizou a **Polícia Federal** a investigar **Fábio Luís Lula da Silva, o \"Lulinha\"** (filho mais velho do presidente), por **suspeita de tráfico de influência** ligada à **Dataprev** (estatal que opera a base do INSS) e a negociações envolvendo o \"Careca do INSS\" e o Ministério da Saúde. É a **segunda investigação** autorizada por Mendonça em dois dias. **Investigação — não condenação.**","gancho":"\"O filho do Lula virou alvo da Polícia Federal — e adivinha onde ele foi meter a mão: no INSS, na aposentadoria da sua vó.\"","fatos_base":"INVESTIGAÇÃO autorizada (Mendonça/STF) — usar \"suspeita/investigado\", nunca \"culpado/condenado\". Ligação com a fraude do INSS (\"Careca do INSS\"). Ângulo seguro: dinheiro do aposentado + peso-dois-pesos do sistema.","cta":"\"Segue o Rony, tamo junto, bora pra cima.\"","destino":"ORG-COMPLETO","status":"proposto","fontes":[["Terra","https://www.terra.com.br/noticias/brasil/mendonca-autoriza-pf-a-investigar-suposto-trafico-de-influencia-de-filho-de-lula-na-dataprev,4978c6146f2028496347348ba2899690ae59yjl0.html"],["MeioNews","https://www.meionews.com/politica/stf-autoriza-pf-a-investigar-lulinha-por-suposto-trafico-de-influencia-na-dataprev-571142"]],"roteiro":[["GANCHO","O filho do Lula virou alvo da Polícia Federal, e adivinha onde ele foi meter a mão: no INSS, na aposentadoria da sua vó, minha gente."],["CONVITE","Pega a pipoca e segue o fio comigo, que eu vou traduzir isso no bom português."],["CONTEXTO","O ministro André Mendonça, do Supremo, autorizou a PF a investigar o Lulinha por suspeita de tráfico de influência na Dataprev — a estatal que cuida da base do INSS. E não é a primeira: é a segunda investigação em dois dias."],["PROVA","Tá na manchete de hoje: \"Mendonça autoriza PF a investigar suposto tráfico de influência de filho de Lula na Dataprev\". Não sou eu falando, é o próprio Supremo mandando investigar."],["PREVISÃO/RESGATE","Anota e me cobra: vão gritar \"perseguição\". O mesmo INSS que sangraram do aposentado agora respinga no filho do presidente. Quem me acompanha sabe que essa turma sempre acaba no mesmo lugar — o seu bolso."],["DEBOCHE","E a Lava Jato, cadê? Ah, verdade — essa turma preferiu aposentar a Lava Jato. Pode ser só coincidência, né?"],["TESE","É sempre o mesmo filme: o sistema cuida dos seus, e a conta sobra pro trabalhador que levanta cedo."],["ASSINATURA+CTA","Eu sou Rony Gabriel, pré-candidato a deputado federal pelo Estado do Rio Grande do Sul. Segue o Rony, tamo junto, bora pra cima."]]},{"id":"I02","title":"Camiseta de Moro e Dallagnol: \"Curitiba prendeu, Brasília soltou\"","vf":10.0,"le":"LE-06","fmt":"FMT-LOFI","risco":true,"origem":"pauta top 2 · tema STF/sistema · 2026-08-01","fato":"Em **01/08/2026**, **Deltan Dallagnol** publicou foto ao lado de **Sergio Moro**, ambos de camiseta com as frases **\"Eu prendi o Lula, o STF soltou\"** e **\"Curitiba prendeu, Brasília soltou\"**; a camiseta do Deltan estampava o **PowerPoint** da Lava Jato. Legenda: *\"Nós prendemos o Lula. O STF soltou.\"* Os dois são pré-candidatos em 2026.","gancho":"\"Moro e Dallagnol botaram numa camiseta a frase que resume o Brasil de hoje: 'Curitiba prendeu, Brasília soltou'.\"","fatos_base":"⚠️ Atribuir a fala a Moro/Dallagnol — é a camiseta DELES. NÃO chamar Lula de \"condenado\": a Lava Jato foi **anulada pelo STF (2021)** e o Deltan foi condenado a **indenizar** o Lula pelo PowerPoint. Enquadrar como separação de poderes / \"o sistema\", nunca como afirmação própria de culpa.","cta":"\"Me segue, bora pra cima.\"","destino":"ORG-CORTES","status":"proposto","fontes":[["Poder360","https://www.poder360.com.br/poder-eleicoes-2026/prendemos-lula-e-o-stf-soltou-dizem-deltan-e-moro/"],["O Antagonista","https://oantagonista.com.br/brasil/nos-prendemos-o-lula-o-stf-soltou/"]],"roteiro":[["GANCHO","Moro e Dallagnol botaram numa camiseta a frase que resume o Brasil de hoje: \"Curitiba prendeu, Brasília soltou\"."],["CONVITE","Segue o fio trinta segundos comigo, que essa provocação diz muito."],["CONTEXTO","Os dois apareceram juntos, de camiseta, batendo de frente com o Supremo. É provocação política, claro. Mas mexe numa ferida real: a sensação de que lá em cima a regra é outra."],["PROVA","A publicação é do próprio Deltan, de ontem, e viralizou — \"Prendemos o Lula e o STF soltou, dizem Deltan e Moro\". Repara bem: eu tô te contando o que ELES disseram."],["DEBOCHE","E antes que venha a turminha da \"checagem\": sim, o Supremo anulou aquilo tudo lá atrás. Curitiba prendeu, Brasília soltou. Tá na cara quem manda no jogo."],["TESE","No fim das contas é o sistema julgando o sistema — e o cidadão comum assistindo de fora, sem entender por que pra ele a lei pega e pra eles não."],["ASSINATURA+CTA","Eu sou Rony Gabriel, pré-candidato a deputado federal pelo Estado do Rio Grande do Sul. Me segue, bora pra cima."]]},{"id":"I03","title":"Tarifaço de 50%: quem paga é o seu bolso","vf":7.4,"le":"LE-02","fmt":"FMT-LOFI","risco":false,"origem":"pauta top 3 · tema economia · 2026-08-01","fato":"A tarifa de **50%** dos EUA sobre a maior parte dos produtos brasileiros entrou em vigor em **06/08** (adiada do dia 01/08), com **isenção de setores-chave** (aviação civil, energia, suco de laranja, celulose, fertilizantes). O vice **Alckmin** chamou de **\"lose-lose\"** (perde-perde) e disse que a **negociação \"só começa agora\"**; cerca de **35,9% das exportações** brasileiras são afetadas. Trump vinculou a medida ao julgamento de Bolsonaro.","gancho":"\"Cinquenta por cento de tarifa em cima do produto brasileiro — e quem vai pagar essa conta não é o Planalto, é o trabalhador daqui.\"","fatos_base":"Tarifa 50% em vigor 06/08 (adiada do 01/08), isenções setoriais, ~35,9% das exportações, Alckmin \"lose-lose\". ⚠️ Trump ligou a medida ao julgamento de Bolsonaro — não negar; focar no **custo no bolso** e na reação tardia do governo, sem cravar tese de causa não comprovada.","cta":"\"Segue o Rony, tamo junto, bora pra cima.\"","destino":"ORG-COMPLETO","status":"proposto","fontes":[["Trading Economics","https://tradingeconomics.com/brazil/balance-of-trade/news/496152"],["Metaverso","https://metaverso.app.br/tarifaco-trump-brasil-negociacao-comercial/29377/"]],"roteiro":[["GANCHO","Cinquenta por cento de tarifa em cima do produto brasileiro. E quem paga essa conta não é o Planalto — é o trabalhador, é o produtor daqui."],["CONVITE","Pega a pipoca, que eu vou te explicar o que isso significa no seu bolso."],["CONTEXTO","Os Estados Unidos taxaram em 50% a maior parte do que o Brasil exporta. Alguns setores escaparam — avião, energia, suco de laranja — mas mais de um terço das nossas exportações levou o baque."],["PROVA","O próprio vice, o Alckmin, admitiu: chamou de \"lose-lose\", perde-perde, e disse que a negociação \"só começa agora\". Ou seja, só foram correr atrás depois que a porteira já tava aberta."],["PREVISÃO/RESGATE","Anota e me cobra: vão jogar toda a culpa no Trump. Mas governo sério cuida da diplomacia ANTES de o prejuízo chegar no porto. Quem me acompanha sabe: diplomacia ideológica custa caro, e quem paga é você."],["DEBOCHE","O governo que fala em \"soberania\" toda semana levou 50% de tarifa e foi pego de calça na mão. Pode ser só coincidência."],["TESE","No fim, a conta da incompetência lá de cima sempre desce pro bolso de quem trabalha."],["ASSINATURA+CTA","Eu sou Rony Gabriel, pré-candidato a deputado federal pelo Estado do Rio Grande do Sul. Segue o Rony, tamo junto, bora pra cima."]]},{"id":"I04","title":"R$ 333 bilhões em crédito no ano da eleição","vf":7.4,"le":"LE-02","fmt":"FMT-LOFI","risco":false,"origem":"pauta top 4 · tema economia · 2026-08-01","fato":"O governo Lula criou e ampliou programas de crédito que somam cerca de **R$ 332,8 bilhões só em 2026** (ano eleitoral) — consignado do CLT (ampliado em junho/2026 com garantia do FGTS), financiamento à indústria, habitação, produtor rural e pequenos negócios. O movimento ocorre enquanto o **Banco Central** tenta segurar a inflação. (Levantamentos paralelos, como o da CNN, somam R$ 256,9 bi em programas e medidas.)","gancho":"\"333 bilhões em crédito, tudo no ano da eleição. Que coincidência mais bonita, né?\"","fatos_base":"R$ 332,8 bi em programas de crédito em 2026 (Poder360); contraste com o aperto monetário do BC. Enquadrar como gastança eleitoral / risco fiscal — opinião a partir de dado real. NÃO afirmar ilegalidade.","cta":"\"Segue o Rony, tamo junto, bora pra cima.\"","destino":"ORG-COMPLETO","status":"proposto","fontes":[["Poder360","https://www.poder360.com.br/poder-economia/lula-criou-programas-de-credito-de-r-333-bilhoes-so-em-2026/"],["CNN Brasil","https://www.cnnbrasil.com.br/economia/macroeconomia/acoes-do-governo-lula-somam-ao-menos-r-256-9-bilhoes-no-ano-eleitoral/"]],"roteiro":[["GANCHO","Trezentos e trinta e três bilhões de reais em crédito, tudo no ano da eleição. Que coincidência mais bonita."],["CONVITE","Pega a pipoca e liga os pontos comigo."],["CONTEXTO","O governo Lula criou e turbinou uma penca de programas de crédito que somam 333 bilhões só em 2026. Consignado, financiamento, linha pra cá, linha pra lá."],["PROVA","Tá na manchete do Poder360: \"Lula criou programas de crédito de 333 bilhões só em 2026\". E olha o detalhe: enquanto o Banco Central tenta segurar a inflação, o Planalto abre a torneira do crédito."],["PREVISÃO/RESGATE","Anota e me cobra: crédito fácil em ano eleitoral não é bondade, é anzol. A conta vem depois — em juro, em inflação, no preço do mercado. Quando o governo te \"empresta\", é você que paga em dobro lá na frente."],["DEBOCHE","Ano de eleição o cofre abre; ano de entregar resultado, o cofre trava. Pode ser só coincidência."],["TESE","Dinheiro público em ano de voto não é generosidade — é compra de tempo com o seu futuro."],["ASSINATURA+CTA","Eu sou Rony Gabriel, pré-candidato a deputado federal pelo Estado do Rio Grande do Sul. Segue o Rony, tamo junto, bora pra cima."]]},{"id":"I05","title":"Flávio: \"Lula é projeto de ditador\"","vf":7.4,"le":"LE-02","fmt":"FMT-LOFI","risco":false,"origem":"pauta top 5 · tema direita/eleições · 2026-08-01","fato":"Em **01/08/2026**, na **convenção do PL em Santa Catarina**, o senador e pré-candidato a presidente **Flávio Bolsonaro (PL-RJ)** chamou **Lula de \"projeto de ditador\"** e disse que vai **\"demiti-lo\"** nas urnas em outubro. Criticou o peso dos ministros do STF e lembrou que o próximo presidente pode indicar até **4 ministros** ao tribunal.","gancho":"\"Flávio Bolsonaro subiu no palco e cravou: Lula é 'projeto de ditador', e a missão de outubro é demitir ele na urna.\"","fatos_base":"\"Projeto de ditador\"/\"demiti-lo\" são fala DO Flávio (convenção PL-SC, 01/08) — atribuir. Dado das 4 indicações ao STF é factual. Sem afirmação difamatória própria do Rony.","cta":"\"Salva esse vídeo, segue o Rony, tamo junto, bora pra cima.\"","destino":"ORG-COMPLETO","status":"proposto","fontes":[["Poder360","https://www.poder360.com.br/poder-eleicoes-2026/flavio-chama-lula-de-projeto-de-ditador-e-diz-que-vai-demiti-lo/"],["Metrópoles","https://www.metropoles.com/brasil/em-convencao-do-pl-sc-flavio-chama-lula-de-projeto-de-ditador"]],"roteiro":[["GANCHO","O Flávio Bolsonaro subiu no palco e cravou: Lula é \"projeto de ditador\", e a missão de outubro é demitir ele na urna."],["CONVITE","Segue o fio comigo, que essa fala tem mais fundo do que parece."],["CONTEXTO","Foi na convenção do PL em Santa Catarina. O Flávio chamou o Lula de projeto de ditador e disse, com todas as letras, que vai \"demiti-lo\" no voto."],["PROVA","Tá na imprensa: Poder360, Metrópoles, InfoMoney. E ele cutucou o ponto que ninguém quer encarar: o próximo presidente pode indicar até quatro ministros pro Supremo. Quatro."],["PREVISÃO/RESGATE","Anota e me cobra: 2026 não é só sobre quem senta na cadeira — é sobre quem vai desenhar o Supremo da próxima década. Quem me acompanha sabe que eu bato nessa tecla faz tempo."],["DEBOCHE","Chamar o Lula de projeto de ditador na frente de todo mundo e seguir solto? Pois é — a liberdade ainda resiste. Por enquanto."],["TESE","2026 é o ano de decidir se o poder ainda cabe no voto do povo, ou se ficou refém da toga."],["ASSINATURA+CTA","Eu sou Rony Gabriel, pré-candidato a deputado federal pelo Estado do Rio Grande do Sul. Salva esse vídeo, segue o Rony, tamo junto, bora pra cima."]]}]};
+const esc=s=>(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const md=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>');
+const dequote=s=>(s||'').replace(/^["'"]+|["'"]+$/g,'').trim();
+function stClass(s){s=(s||'').toLowerCase();return s.includes('aprovado')?'aprov':s.includes('proposto')?'prop':'pend';}
+function stLabel(s){return (s||'').replace(/-/g,' ');}
+function card(it){
+  const sc=stClass(it.status);
+  const fontes=it.fontes.length?`<div class="fontes">${it.fontes.map(f=>`<a href="${esc(f[1])}" target="_blank" rel="noopener">↗ ${esc(f[0])}</a>`).join('')}</div>`:'';
+  const rot=it.roteiro.length
+    ? it.roteiro.map(b=>`<div class="blk"><div class="lb">${esc(b[0]||'—')}</div><div class="tx">${md(b[1])}</div></div>`).join('')
+    : `<div class="empty">Roteiro ainda não gerado — rode a skill <b>roteiros-do-dia-rony</b>.</div>`;
+  const rotPlain=it.roteiro.map(b=>(b[0]?`[${b[0]}] `:'')+b[1]).join('\n');
+  return `<div class="card ${it.risco?'risco':''}" data-st="${sc}" data-risco="${it.risco?1:0}">
+   <div class="ch">
+     <span class="id">${esc(it.id)}</span>
+     <span class="tt">${esc(it.title)}</span>
+     ${it.risco?'<span class="badge b-risco">⚠️ alto risco</span>':''}
+     <span class="badge b-${sc}">${esc(stLabel(it.status))}</span>
+   </div>
+   <div class="cb">
+     <div class="meta">
+       ${it.vf!=null?`<span class="vf">viral-fit <b>${it.vf}</b></span>`:''}
+       ${it.destino?`<span>esteira <span class="est">${esc(it.destino)}</span></span>`:''}
+       ${it.le?`<span>${esc(it.le)}</span>`:''}
+     </div>
+     ${it.fato?`<div class="sec"><div class="h">Fato confirmado</div><div class="in"><div class="fato">${md(it.fato)}</div>${fontes}</div></div>`:''}
+     ${it.gancho?`<div class="gancho">"${esc(dequote(it.gancho))}"</div>`:''}
+     <div class="sec"><div class="h">Roteiro tela verde ${it.roteiro.length?`<span class="cp" onclick='copyR(${JSON.stringify(rotPlain)})'>copiar</span>`:''}</div><div class="in">${rot}</div></div>
+     ${it.fatos_base?`<div class="meta"><span>base: ${md(it.fatos_base)}</span></div>`:''}
+   </div></div>`;
+}
+function render(f){
+  const items=D.items.filter(it=>{
+    if(f==='all')return true;
+    if(f==='risco')return it.risco;
+    return stClass(it.status)===stClass(f);
+  });
+  document.getElementById('wrap').innerHTML=items.map(card).join('')||'<div class="empty" style="margin-top:20px">Nada neste filtro.</div>';
+}
+function copyR(t){navigator.clipboard.writeText(t);}
+document.querySelectorAll('.fil').forEach(el=>el.onclick=()=>{
+  document.querySelectorAll('.fil').forEach(x=>x.classList.remove('on'));el.classList.add('on');render(el.dataset.f);});
+(function(){const c={aprovado:0,proposto:0,pendente:0,risco:0};
+  D.items.forEach(it=>{const s=stClass(it.status);c[s==='aprov'?'aprovado':s==='prop'?'proposto':'pendente']++;if(it.risco)c.risco++;});
+  document.getElementById('counts').innerHTML=
+   `<span class="chip">${D.items.length} ideias</span>`+
+   (c.aprovado?`<span class="chip">✅ ${c.aprovado} aprovados</span>`:'')+
+   (c.proposto?`<span class="chip">📝 ${c.proposto} propostos</span>`:'')+
+   (c.pendente?`<span class="chip">⏳ ${c.pendente} pendentes</span>`:'');
+})();
+render('all');
+</script></body></html>
