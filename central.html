@@ -1,12 +1,20 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><title>Central de Inteligência — Rony</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f4f6f8;--card:#fff;--ink:#141c26;--mut:#69737f;--line:#e6eaef;--grn:#0B3D1C;--grn2:#16A34A;--gold:#C8940A;--chip:#eef1f5;--pt:#E11D2A;--pl:#12468f;}
-@media(prefers-color-scheme:dark){:root{--bg:#0c1310;--card:#141d18;--ink:#e8eee9;--mut:#8fa098;--line:#233229;--chip:#1b2a20;--gold:#F2B705;--grn2:#3fbf6a;--pl:#3f7fd6;}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px;line-height:1.5}
-.hero{background:linear-gradient(135deg,#0B3D1C,#0f5227);color:#fff;padding:20px}
+:root{--bg:#f1f4f8;--card:#fff;--ink:#1a2431;--mut:#66727f;--line:#e2e7ee;--navy:#0d2947;--grn:#0d2947;--grn2:#2f6ea3;--gold:#b7860b;--chip:#eef2f7;--pt:#c0392b;--pl:#1e5aa8;--shadow:0 1px 3px rgba(13,41,71,.06);}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums}
+h1,.mun,.tab{font-family:"Outfit",-apple-system,"Segoe UI",Roboto,sans-serif}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--grn2);outline-offset:2px}
+.note{background:#eaf1fb;border:1px solid #cfe0f5;color:#2c4a6b;border-radius:11px;padding:11px 14px;margin:14px 0 4px;font-size:13.5px;line-height:1.5}
+.note b{color:#123a6b}
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:26px 18px;margin:12px 0;text-align:center;color:var(--mut);font-size:14px;line-height:1.6}
+.empty b{color:var(--ink)}
+.hero{background:linear-gradient(135deg,#0d2947,#16406e);color:#fff;padding:22px 20px 20px}
 .hero .w{max-width:1060px;margin:0 auto}.kick{font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.75}
-.hero h1{margin:3px 0 0;font-size:23px}.hero h1 b{color:#F2B705}
+.hero h1{margin:3px 0 0;font-size:24px;letter-spacing:-.3px}.hero h1 b{color:#e6b422}
 .tabs{display:flex;gap:6px;max-width:1060px;margin:14px auto 0;overflow-x:auto}
 .tab{white-space:nowrap;padding:9px 15px;border-radius:9px 9px 0 0;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;font-size:14px;font-weight:600;border:0;font-family:inherit}
 .tab.on{background:var(--bg);color:var(--ink)}
@@ -19,7 +27,8 @@ select{font-size:14px;padding:9px;border:1px solid var(--line);border-radius:9px
 .chip{white-space:nowrap;border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:6px 12px;border-radius:20px;font-size:12.5px;cursor:pointer;font-family:inherit}
 .chip.on{background:var(--grn);border-color:var(--grn);color:#fff}
 .count{color:var(--mut);font-size:12.5px;padding:9px 2px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:9px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:9px 0;box-shadow:var(--shadow);transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:#c7d4e2;box-shadow:0 4px 14px rgba(13,41,71,.08)}
 .card a.tit{color:var(--ink);text-decoration:none;font-weight:600}.card a.tit:hover{color:var(--grn2)}
 .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:7px;font-size:12px;color:var(--mut)}
 .tag{background:color-mix(in srgb,var(--grn2) 15%,transparent);color:var(--grn2);padding:2px 8px;border-radius:20px;font-weight:700}
@@ -37,7 +46,7 @@ select{font-size:14px;padding:9px;border:1px solid var(--line);border-radius:9px
 .agdate{font-weight:800;color:var(--gold);font-size:13px;margin:16px 0 2px;letter-spacing:.3px}
 .det{display:none;margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}.det.show{display:block}
 .hint{font-size:12px;color:var(--mut);margin-top:4px}
-</style><style id="gnav-css">.gnav{background:#0d2947;color:#fff;display:flex;align-items:center;gap:4px;padding:0 14px;flex-wrap:wrap;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}.gnav .brand{font-weight:800;font-size:13px;padding:9px 12px 9px 0}.gnav a{color:#cdd8e6;text-decoration:none;font-size:12.5px;padding:11px 13px;border-bottom:2px solid transparent}.gnav a:hover{color:#fff}.gnav a.on{color:#fff;border-bottom-color:#4a90d9;font-weight:600}</style></head><body>
+</style><style id="gnav-css">.gnav{background:#0d2947;color:#fff;display:flex;align-items:center;gap:4px;padding:0 14px;flex-wrap:wrap;font-family:"Outfit",-apple-system,"Segoe UI",Roboto,Arial,sans-serif}.gnav .brand{font-weight:800;font-size:13px;padding:9px 12px 9px 0}.gnav a{color:#cdd8e6;text-decoration:none;font-size:12.5px;padding:11px 13px;border-bottom:2px solid transparent}.gnav a:hover{color:#fff}.gnav a.on{color:#fff;border-bottom-color:#e6b422;font-weight:600}</style></head><body>
 <div class="gnav">
   <span class="brand">🎯 Operação Rony</span>
   <a href="index.html">Início</a>
@@ -72,6 +81,7 @@ select{font-size:14px;padding:9px;border:1px solid var(--line);border-radius:9px
   <div class="count" id="cE"></div><div id="lE"></div><button class="more" id="mE" style="display:none">Mostrar mais</button>
  </div>
  <div class="sec" id="s-cid">
+  <div class="note">📍 Por enquanto, estão aqui só as cidades <b>já confirmadas na agenda</b> do Rony. Conforme novas visitas forem confirmadas, os estudos de cidade vão sendo <b>adicionados automaticamente</b>.</div>
   <div class="bar" style="padding-bottom:2px"><div class="chips" id="chipsC"></div></div>
   <div id="lC"></div>
  </div>
@@ -92,12 +102,16 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
  document.getElementById('s-'+t.dataset.t).classList.add('on');window.scrollTo(0,0);}));
 // NOTICIAS
 const setores=[...new Set(DB.noticias.map(i=>i.s).filter(Boolean))];
-$('#chipsN').innerHTML='<button class="chip on" data-s="">Todos</button>'+setores.map(s=>`<button class="chip" data-s="${esc(s)}">${esc(s)}</button>`).join('');
+$('#chipsN').innerHTML='<button class="chip on" data-s="">Todos</button>'
+ +'<button class="chip" data-s="__rony__" style="border-color:var(--gold);color:var(--gold);font-weight:700">★ Menções ao Rony</button>'
+ +setores.map(s=>`<button class="chip" data-s="${esc(s)}">${esc(s)}</button>`).join('');
 let fN=DB.noticias,shN=0,qn="",setn="";
 function noticiaCard(i){return `<div class="card"><a class="tit" href="${esc(i.l)}" target="_blank" rel="noopener">${esc(i.t)}</a>
  <div class="meta"><span class="date">${esc(i.br)}</span><span class="tag">${esc(i.s)}</span><span class="peso">peso ${i.p}</span><span>${esc(i.f)}</span></div></div>`}
-function rN(r){if(r){$('#lN').innerHTML='';shN=0}const sl=fN.slice(shN,shN+40);$('#lN').insertAdjacentHTML('beforeend',sl.map(noticiaCard).join(''));shN+=sl.length;$('#mN').style.display=shN<fN.length?'block':'none';$('#cN').textContent=`${fN.length} notícia(s)`}
-function apN(){fN=DB.noticias.filter(i=>{if(setn&&i.s!==setn)return false;if(!qn)return true;return (i.t+' '+i.f).toLowerCase().includes(qn)});rN(true)}
+function rN(r){if(r){$('#lN').innerHTML='';shN=0}
+ if(fN.length===0){$('#lN').innerHTML=setn==='__rony__'?'<div class="empty">Nenhuma notícia do banco cita o <b>Rony Gabriel</b> ainda.<br>Conforme a imprensa cobrir a pré-candidatura, as menções aparecem aqui automaticamente.</div>':'<div class="empty">Nenhuma notícia encontrada com esse filtro.</div>';$('#mN').style.display='none';$('#cN').textContent='0 notícia(s)';return;}
+ const sl=fN.slice(shN,shN+40);$('#lN').insertAdjacentHTML('beforeend',sl.map(noticiaCard).join(''));shN+=sl.length;$('#mN').style.display=shN<fN.length?'block':'none';$('#cN').textContent=`${fN.length} notícia(s)`}
+function apN(){fN=DB.noticias.filter(i=>{if(setn==='__rony__'){if(!/rony/i.test(i.t+' '+i.f))return false;}else if(setn&&i.s!==setn)return false;if(!qn)return true;return (i.t+' '+i.f).toLowerCase().includes(qn)});rN(true)}
 $('#qn').addEventListener('input',e=>{qn=e.target.value.toLowerCase().trim();apN()});
 $('#chipsN').addEventListener('click',e=>{if(!e.target.dataset.s&&e.target.dataset.s!=="")return;document.querySelectorAll('#chipsN .chip').forEach(x=>x.classList.remove('on'));e.target.classList.add('on');setn=e.target.dataset.s;apN()});
 $('#mN').addEventListener('click',()=>rN(false));apN();
