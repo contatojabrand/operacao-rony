@@ -1,0 +1,113 @@
+<!doctype html><html lang="pt-br"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apoiadores · Operação Rony</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#f1f4f8;color:#1a2431}
+.gnav{background:#0d2947;color:#fff;display:flex;align-items:center;gap:4px;padding:0 14px;flex-wrap:wrap}
+.gnav .brand{font-weight:800;font-size:13px;padding:9px 12px 9px 0}
+.gnav a{color:#cdd8e6;text-decoration:none;font-size:12.5px;padding:11px 13px;border-bottom:2px solid transparent}
+.gnav a:hover{color:#fff}.gnav a.on{color:#fff;border-bottom-color:#e6b422;font-weight:600}
+.top{background:#0d2947;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.top h1{font-size:16px;font-weight:800}.top .who{margin-left:auto;font-size:12px;opacity:.9;display:flex;gap:10px;align-items:center}
+.top button{background:rgba(255,255,255,.14);color:#fff;border:0;padding:6px 12px;border-radius:7px;cursor:pointer;font:inherit}
+/* login */
+.login{max-width:360px;margin:60px auto;background:#fff;border:1px solid #e2e7ee;border-radius:14px;padding:26px;box-shadow:0 4px 20px rgba(13,41,71,.08)}
+.login h2{font-size:18px;margin-bottom:4px}.login p{color:#66727f;font-size:13px;margin-bottom:16px}
+.login label{display:block;font-size:12px;color:#66727f;margin:10px 0 4px}
+.login input{width:100%;padding:10px 12px;border:1px solid #dde3ea;border-radius:8px;font:inherit}
+.login button{width:100%;margin-top:16px;background:#0d2947;color:#fff;border:0;padding:11px;border-radius:8px;font-weight:600;cursor:pointer}
+.err{color:#c0392b;font-size:12.5px;margin-top:10px;min-height:16px}
+.lock{color:#66727f;font-size:12px;text-align:center;margin-top:14px}
+/* dados */
+.bar{padding:12px 16px;display:flex;gap:8px;flex-wrap:wrap;background:#fff;border-bottom:1px solid #e2e7ee;position:sticky;top:0;z-index:5}
+.bar input{flex:1;min-width:160px;padding:9px 12px;border:1px solid #dde3ea;border-radius:8px;font:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:14px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e7ee;border-radius:10px;overflow:hidden}
+th{background:#0d2947;color:#fff;text-align:left;padding:9px 11px;font-size:11px;text-transform:uppercase;letter-spacing:.3px;cursor:pointer}
+td{padding:9px 11px;border-bottom:1px solid #eef1f4;font-size:13.5px}
+tr:hover td{background:#f7f9fc}.num{text-align:right;font-variant-numeric:tabular-nums}
+a.tel{color:#1a7f4b;font-weight:600;text-decoration:none;white-space:nowrap}
+.cnt{color:#66727f;font-size:12.5px;padding:8px 2px}
+.hide{display:none}
+</style></head><body>
+<div class="gnav">
+  <span class="brand">🎯 Operação Rony</span>
+  <a href="index.html">Início</a>
+  <a href="roteiros-do-dia.html">Roteiros do Dia</a>
+  <a href="mapa-rs.html">Mapa Eleitoral</a>
+  <a href="central.html">Central de Inteligência</a>
+  <a href="apoiadores-app.html" class="on">🔒 Apoiadores</a>
+</div>
+
+<!-- TELA DE LOGIN -->
+<div id="login" class="login">
+  <h2>🔒 Área restrita</h2>
+  <p>Apoiadores da campanha. Acesso só para a equipe.</p>
+  <label>E-mail</label><input id="email" type="email" autocomplete="username">
+  <label>Senha</label><input id="senha" type="password" autocomplete="current-password">
+  <button id="btnLogin">Entrar</button>
+  <div class="err" id="err"></div>
+  <div class="lock">Não tem acesso? Fale com o administrador da campanha.</div>
+</div>
+
+<!-- DADOS (só aparece logado) -->
+<div id="app" class="hide">
+  <div class="top"><h1>🤝 Apoiadores — Rony Gabriel</h1>
+    <div class="who"><span id="ctd"></span><span id="user"></span><button id="btnSair">Sair</button></div></div>
+  <div class="bar"><input id="q" placeholder="Buscar por nome, cidade, cargo..."></div>
+  <div class="wrap">
+    <table id="t"><thead><tr>
+      <th data-k="nome">Nome</th><th data-k="cargo">Cargo</th><th data-k="municipio">Cidade</th>
+      <th data-k="votos" class="num">Votos</th><th data-k="telefone">Telefone</th>
+    </tr></thead><tbody></tbody></table>
+    <div class="cnt" id="cnt"></div>
+  </div>
+</div>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+// ===== PREENCHA com os dados do seu projeto Supabase (Project Settings → API) =====
+const SUPABASE_URL = "https://shyfdwdduspmaafgjywo.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_2UXF9wAilzEqF4W6a8cqaw_LeO-Tays";
+// ==================================================================================
+
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const $ = s => document.querySelector(s);
+let DADOS = [], sortK='municipio', dir=1, q='';
+
+async function boot(){
+  const { data:{ session } } = await sb.auth.getSession();
+  if(session) mostrarApp(session); else mostrarLogin();
+}
+function mostrarLogin(){ $('#login').classList.remove('hide'); $('#app').classList.add('hide'); }
+async function mostrarApp(session){
+  $('#login').classList.add('hide'); $('#app').classList.remove('hide');
+  $('#user').textContent = session.user.email;
+  const { data, error } = await sb.from('apoiadores').select('*');
+  if(error){ alert('Erro ao carregar: '+error.message); return; }
+  DADOS = data || []; render();
+}
+$('#btnLogin').onclick = async ()=>{
+  $('#err').textContent='';
+  const email=$('#email').value.trim(), password=$('#senha').value;
+  const { data, error } = await sb.auth.signInWithPassword({ email, password });
+  if(error){ $('#err').textContent = 'E-mail ou senha inválidos.'; return; }
+  mostrarApp(data.session);
+};
+$('#senha').addEventListener('keydown',e=>{ if(e.key==='Enter')$('#btnLogin').click(); });
+$('#btnSair').onclick = async ()=>{ await sb.auth.signOut(); location.reload(); };
+
+const esc=s=>(s==null?'':String(s)).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function tel(t){const d=(t||'').replace(/\D/g,'');return d?`<a class="tel" href="tel:${d}">${esc(t)}</a>`:'';}
+function render(){
+  let r = DADOS.filter(x=>!q||[x.nome,x.cargo,x.municipio,x.cidade].some(v=>String(v||'').toLowerCase().includes(q)));
+  r = r.slice().sort((a,b)=>{const A=a[sortK],B=b[sortK];if(sortK==='votos')return((+A||0)-(+B||0))*dir;return String(A||'').localeCompare(String(B||''),'pt')*dir;});
+  $('#t tbody').innerHTML = r.map(x=>`<tr><td><b>${esc(x.nome)}</b></td><td>${esc(x.cargo)}</td><td>${esc(x.municipio||x.cidade)}</td><td class="num">${x.votos!=null?esc(x.votos):''}</td><td>${tel(x.telefone)}</td></tr>`).join('');
+  $('#cnt').textContent = `${r.length} de ${DADOS.length} apoiadores`;
+  $('#ctd').textContent = `${DADOS.length} apoiadores`;
+}
+document.querySelectorAll('th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(sortK===k)dir*=-1;else{sortK=k;dir=1}render();});
+$('#q').oninput = e=>{ q=e.target.value.toLowerCase().trim(); render(); };
+boot();
+</script></body></html>
