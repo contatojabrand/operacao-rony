@@ -1,0 +1,132 @@
+<!doctype html><html lang="pt-br"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conteúdo do Dia · Operação Rony</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#eef1f5;--card:#fff;--ink:#1f2733;--mut:#6b7684;--line:#dde3ea;
+  --blue:#0d2947;--acc:#4a90d9;--gold:#e6b422;--risco:#c0392b;--good:#1f8a5b}
+body{font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);font-variant-numeric:tabular-nums}
+.hero h1,.card h2,.gnav .brand,.sec-t,.stat .num,.doc h3{font-family:"Outfit",-apple-system,"Segoe UI",Roboto,sans-serif}
+.gnav{background:var(--blue);color:#fff;display:flex;align-items:center;gap:4px;padding:0 14px;flex-wrap:wrap}
+.gnav .brand{font-weight:800;font-size:13px;padding:9px 12px 9px 0}
+.gnav a{color:#cdd8e6;text-decoration:none;font-size:12.5px;padding:11px 13px;border-bottom:2px solid transparent}
+.gnav a:hover{color:#fff}
+.gnav a.on{color:#fff;border-bottom-color:var(--gold);font-weight:600}
+.hero{background:linear-gradient(120deg,#0d2947,#16406e);color:#fff;padding:34px 22px 30px}
+.hero .in{max-width:1000px;margin:0 auto}
+.hero h1{font-size:26px;font-weight:800;letter-spacing:.2px}
+.hero p{opacity:.82;margin-top:7px;font-size:14px;max-width:640px}
+.hero .dia{margin-top:14px;display:inline-flex;gap:8px;flex-wrap:wrap;font-size:12px}
+.hero .dia b{background:rgba(255,255,255,.14);padding:4px 11px;border-radius:20px;font-weight:600}
+.hero .dia b.gold{background:var(--gold);color:#3a2c00}
+.wrap{max-width:1000px;margin:0 auto;padding:20px 16px 40px}
+.sec-t{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--mut);margin:24px 4px 8px;font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;gap:8px;transition:transform .12s,box-shadow .12s;box-shadow:0 1px 3px rgba(20,30,50,.05)}
+a.card:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(13,41,71,.13);border-color:#b9c6d6}
+.card h2{font-size:17px;font-weight:700}
+.card p{color:var(--mut);font-size:13px;flex:1}
+.card .go{color:var(--acc);font-weight:600;font-size:13px}
+.tag{display:inline-flex;gap:6px;flex-wrap:wrap;font-size:11px;margin-top:2px}
+.tag span{background:#eef2f7;color:#40566f;padding:2px 9px;border-radius:20px;font-weight:600}
+.tag .grava{background:#fbe6e2;color:#c0392b} .tag .edita{background:#e5f0fb;color:#1f5fa8}
+.tag .arte{background:#efeafb;color:#5b45c2} .tag .banco{background:#e2f2ee;color:#1f8a5b}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+/* resumo */
+.resumo{display:grid;grid-template-columns:auto auto 1fr;gap:26px;align-items:center}
+@media(max-width:640px){.resumo{grid-template-columns:1fr 1fr;gap:16px}.resumo .temas{grid-column:1/-1}}
+.stat{display:flex;flex-direction:column}
+.stat .num{font-size:40px;font-weight:800;line-height:1;letter-spacing:-.5px}
+.stat.banco .num{color:var(--acc)} .stat.quente .num{color:var(--risco)}
+.stat .lab{font-size:12.5px;color:var(--mut);margin-top:4px}
+.temas .h{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--risco);font-weight:700;margin-bottom:6px}
+.temas ol{margin:0;padding-left:18px} .temas li{margin:2px 0;font-size:13.5px}
+/* documentos: 2 cards */
+.docs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.docs{grid-template-columns:1fr}}
+.doc{border-left:4px solid var(--acc)} .doc.grava{border-left-color:var(--risco)}
+.doc h3{font-size:17px;font-weight:700} .doc p{color:var(--mut);font-size:13px;flex:1}
+.doc .go{font-weight:700;font-size:13px;color:var(--acc)} .doc.grava .go{color:var(--risco)}
+/* eixo */
+.eixo{display:flex;flex-direction:column;gap:4px} .eixo .n{font-size:30px;font-weight:800;line-height:1;color:var(--blue)}
+.eixo h2{font-size:16px}
+/* legenda */
+.legend{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--mut)}
+.legend b{color:var(--ink)} .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.tile{flex-direction:row;align-items:center;gap:13px} .tile .ic{font-size:22px} .tile .tt{font-weight:700} .tile .ss{color:var(--mut);font-size:12.5px} .tile .arr{margin-left:auto;color:var(--acc);font-weight:700}
+.foot{text-align:center;color:var(--mut);font-size:11.5px;margin-top:28px;line-height:1.7}
+</style></head><body>
+<div class="gnav">
+  <span class="brand">🎯 Operação Rony</span>
+  <a href="index.html">Início</a>
+  <a href="central-conteudo.html" class="on">Conteúdo do Dia</a>
+  <a href="roteiros-do-dia.html">Roteiros do Dia</a>
+  <a href="mapa-rs.html">Mapa Eleitoral</a>
+  <a href="central.html">Central de Inteligência</a>
+  <a href="apoiadores-app.html">🔒 Apoiadores</a>
+</div>
+<div class="hero"><div class="in">
+  <h1>Conteúdo do Dia</h1>
+  <p>O que sai hoje, os roteiros pra gravar e cada pasta do Drive — num lugar só. Central da equipe de produção.</p>
+  <div class="dia"><b class="gold">📅 12/08</b><b>📦 30 do banco</b><b>🔥 5 quentes</b></div>
+</div></div>
+<div class="wrap">
+
+  <div class="sec-t">O que sai hoje</div>
+  <div class="card resumo">
+    <div class="stat banco"><span class="num">30</span><span class="lab">do banco (piso fixo)</span></div>
+    <div class="stat quente"><span class="num">5</span><span class="lab">quentes do dia</span></div>
+    <div class="temas"><div class="h">Temas quentes de hoje</div><ol><li>Moraes bate na porta da fonte do jornalista</li><li>A inflação "voltou pra meta", mas a sua conta de luz explodiu</li><li>As perguntas que cercam o Lula no escândalo do INSS</li><li>Banco Master: a mão dos servidores do Banco Central</li><li>Tarifaço: Lula grita contra Trump e corre pra China</li></ol></div>
+  </div>
+
+  <div class="sec-t">Os documentos do dia</div>
+  <div class="docs">
+    <a class="card doc grava" href="https://drive.google.com/file/d/1fRteHlw47kYu9-gejNJUm7Ro3T37kJcs/view" target="_blank" rel="noopener">
+      <h3>🎬 Roteiros do dia (PDF)</h3>
+      <p>Tudo que é pra <b>gravar</b> num documento só — abre no celular e grava de cima pra baixo. É o que vai pro Rony no WhatsApp.</p>
+      <div class="tag"><span class="grava">🎥 gravar</span></div>
+      <span class="go">abrir PDF →</span>
+    </a>
+    <a class="card doc" href="https://drive.google.com/file/d/1Ckcw3TsfZrPZ-Z9fuV9VAQGzLGgL6l7f/view" target="_blank" rel="noopener">
+      <h3>📋 Plano do dia (PDF)</h3>
+      <p>O que a equipe <b>produz e posta</b> hoje: os 30 do banco por eixo + as quentes, cada um com link pra abrir a pasta.</p>
+      <div class="tag"><span class="edita">🗂️ equipe</span></div>
+      <span class="go">abrir PDF →</span>
+    </a>
+  </div>
+
+  <div class="sec-t">Os 30 do banco — clique para abrir a pasta</div>
+  <div class="grid"><a class="card eixo" href="https://drive.google.com/drive/folders/1m2HTyWmDBaDtK6J6-357UPVTszHY9YL6" target="_blank" rel="noopener"><span class="n">10</span><h2>🎬 Cortes</h2><p>os 10 vídeos + roteiros</p><div class="tag"><span class="edita">✂️ editor</span></div><span class="go">abrir pasta →</span></a><a class="card eixo" href="https://drive.google.com/drive/folders/1xNT9UqZaskai_OuTwjjC4HwRunJIeZm0" target="_blank" rel="noopener"><span class="n">4</span><h2>🎙️ RonyCast</h2><p>pergunta e resposta</p><div class="tag"><span class="edita">✂️ editor</span></div><span class="go">abrir pasta →</span></a><a class="card eixo" href="https://drive.google.com/drive/folders/1oFdb1VBME5HmbK2P2zL8NfPcg1I3IxSb" target="_blank" rel="noopener"><span class="n">8</span><h2>🖼️ Carrossel &amp; post</h2><p>com direção pro design</p><div class="tag"><span class="arte">🖼️ designer</span></div><span class="go">abrir pasta →</span></a><a class="card eixo" href="https://drive.google.com/drive/folders/134pefVrNv37toZKyr9cuRDnBtx_i1qhP" target="_blank" rel="noopener"><span class="n">8</span><h2>📍 Regional</h2><p>cidade, região e tema</p><div class="tag"><span class="grava">🎥 grava</span></div><span class="go">abrir pasta →</span></a></div>
+
+  <div class="sec-t">Quente do dia — o que gravar hoje</div>
+  <a class="card doc grava" href="https://drive.google.com/drive/folders/10utIGu-xCrhVdzzGCK2o54c8t8A9KqpT" target="_blank" rel="noopener">
+    <h3>🔥 5 conteúdos quentes + agenda do dia</h3>
+    <p>Tela verde e bate-bola sobre a pauta de hoje. Junto vai a <b>agenda</b>: a cidade do dia e o que gravar no local. Os roteiros completos estão no PDF de roteiros.</p>
+    <span class="go">abrir pasta das quentes →</span>
+  </a>
+
+  <div class="sec-t">Quem faz o quê</div>
+  <div class="card"><div class="legend">
+    <span><span class="sw" style="background:#1f5fa8"></span><b>✂️ Corte</b> — editor</span>
+    <span><span class="sw" style="background:#5b45c2"></span><b>🖼️ Arte</b> — designer</span>
+    <span><span class="sw" style="background:#c0392b"></span><b>🎥 Gravar</b> — Rony</span>
+    <span>cada arquivo já vem marcado pelo tipo no nome</span>
+  </div></div>
+
+  <div class="sec-t">Acesso rápido</div>
+  <div class="grid">
+    <a class="card tile" href="https://drive.google.com/drive/folders/1rxoLN7ATLu3taQv5L7v2ygRlBo4Ryvg7" target="_blank" rel="noopener"><span class="ic">📁</span><div><div class="tt">Pasta do dia</div><div class="ss">as subpastas do dia</div></div><span class="arr">↗</span></a>
+    <a class="card tile" href="https://drive.google.com/file/d/13t1PE94_yyYtY_tRWNPZYnCiKiAPfVMU/view" target="_blank" rel="noopener"><span class="ic">🗂️</span><div><div class="tt">Índice do dia</div><div class="ss">a relação de tudo</div></div><span class="arr">↗</span></a>
+    <a class="card tile" href="https://docs.google.com/document/d/1sBZZ3evvfeQRTu96-gLqg13osQawIoJ3sgoz7nnN7Lo/edit" target="_blank" rel="noopener"><span class="ic">📅</span><div><div class="tt">Agenda do dia</div><div class="ss">cidade, evento e o que gravar</div></div><span class="arr">↗</span></a>
+    <a class="card tile" href="https://drive.google.com/file/d/13zgIpzMQt40F5yxGELQ-X1pAciQG3wYc/view" target="_blank" rel="noopener"><span class="ic">📄</span><div><div class="tt">Proposta de mandato</div><div class="ss">as bandeiras oficiais</div></div><span class="arr">↗</span></a>
+  </div>
+
+  <div class="foot">
+    Operação Rony · central da equipe de produção. O Rony e o Allisson recebem os roteiros e o plano do dia no WhatsApp todo dia às 7h.<br>
+    Fluxo: rotina 7h → conteúdo do dia → gravação → esteira de publicação.
+  </div>
+</div>
+</body></html>
