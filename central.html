@@ -137,7 +137,7 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
  document.getElementById('s-'+t.dataset.t).classList.add('on');window.scrollTo(0,0);}));
 // NOTICIAS — browser temático (JS injetado à parte, fora do f-string). Ver NEWS_BROWSER_JS_RONY.
 // QUENTE
-$('#lQ').innerHTML=DB.quente.map(noticiaCard).join('');
+$('#lQ').innerHTML=DB.quente.map(i=>`<div class="card"><a class="tit" href="${esc(i.l)}" target="_blank" rel="noopener">${esc(i.t)}</a><div class="meta"><span class="date">${esc(i.br)}</span><span class="tag">${esc(i.s)}</span><span class="peso">peso ${i.p}</span><span>${esc(i.f)}</span></div></div>`).join('');
 // ELEITORAL
 function elecCard(m){const cor=m.vencedor==='Lula'?'var(--pt)':'var(--pl)';
  const dep=x=>x?`<span class="nm">${esc(x.nome)}</span> <span class="pt">${esc(x.partido)} · ${nf(x.votos)} votos</span>`:'<span class="pt">sem dado</span>';
